@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    text-align: center;
+    padding: 20px;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.section {
+    margin: 40px auto;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.resistor {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.band {
+    width: 30px;
+    height: 100px;
+    margin: 0 5px;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+label, select, input, button {
+    margin: 10px;
+    font-size: 16px;
+}
+
+select, input {
+    padding: 5px;
+}
+
+button {
+    padding: 8px 20px;
+    cursor: pointer;
+}
