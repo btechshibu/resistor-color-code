@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="combinedResistorApp">
+<head>
+    <meta charset="utf-8">
+    <title>Resistor Color Code & Value Tool</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="ResistorController">
+
+    <h1>Resistor Color Code & Value Tool</h1>
+
+    <div class="section">
+        <h2>Mode 1: Color Bands ➔ Resistance</h2>
+        <div class="resistor">
+            <div class="band" ng-style="{'background': band1.color}"></div>
+            <div class="band" ng-style="{'background': band2.color}"></div>
+            <div class="band" ng-style="{'background': band3.color}"></div>
+            <div class="band" ng-style="{'background': band4.color}"></div>
+        </div>
+
+        <div class="selectors">
+            <label>Band 1:</label>
+            <select ng-model="band1" ng-options="c.color for c in digits"></select>
+            <label>Band 2:</label>
+            <select ng-model="band2" ng-options="c.color for c in digits"></select>
+            <label>Band 3:</label>
+            <select ng-model="band3" ng-options="c.color for c in multipliers"></select>
+            <label>Band 4:</label>
+            <select ng-model="band4" ng-options="c.color for c in tolerances"></select>
+        </div>
+
+        <h3>Calculated Resistance: {{calculatedResistance}} (±{{band4.tol}}%)</h3>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <h2>Mode 2: Resistance ➔ Color Bands</h2>
+        <input type="number" ng-model="inputResistance" placeholder="Enter resistance in ohms" />
+        <button ng-click="calculateColorCode()">Find Color Code</button>
+
+        <div ng-if="result">
+            <h3 ng-if="!result.approx">Exact Color Code for: {{result.standardValue}} Ω</h3>
+            <h3 ng-if="result.approx">Approximate Color Code (Nearest): {{result.standardValue}} Ω</h3>
+            <div class="resistor">
+                <div class="band" ng-style="{'background': result.band1}"></div>
+                <div class="band" ng-style="{'background': result.band2}"></div>
+                <div class="band" ng-style="{'background': result.band3}"></div>
+                <div class="band" ng-style="{'background': result.band4}"></div>
+            </div>
+            <p>Tolerance: ±5%</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
